@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">SSID Connector</string>
+    <string name="no_permissions">This app can only work if you grant the Location permission</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
 </resources>

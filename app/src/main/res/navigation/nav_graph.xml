@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/permissions">
+
+    <fragment
+        android:id="@+id/networks"
+        android:name="com.stylingandroid.ssidconnector.ui.networks.NetworksFragment"
+        android:label="NetworksFragment" />
+
+    <fragment
+        android:id="@+id/permissions"
+        android:name="com.stylingandroid.ssidconnector.ui.permissions.PermissionsFragment"
+        android:label="permissions_fragment"
+        app:popUpToInclusive="true"
+        tools:layout="@layout/permissions_fragment" />
+</navigation>

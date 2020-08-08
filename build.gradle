@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath BuildPlugins.androidGradlePlugin
         classpath BuildPlugins.kotlinGradlePlugin
+        classpath BuildPlugins.hiltAbdroidPlugin
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -16,7 +17,7 @@ buildscript {
 
 plugins {
     id 'com.github.ben-manes.versions' version '0.29.0'
-    id 'io.gitlab.arturbosch.detekt' version "1.10.0"
+    id 'io.gitlab.arturbosch.detekt' version "1.11.0-RC1"
     id 'org.jlleitschuh.gradle.ktlint' version '9.3.0'
 }
 
@@ -35,4 +36,20 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    ssid = loadValues().getProperty('SSID')
+    preSharedKey = loadValues().getProperty('PRE_SHARED_KEY')
+}
+
+def loadValues() {
+    Properties localProperties = new Properties()
+    if (project.rootProject.file('local.properties').exists()) {
+        localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
+    } else {
+        localProperties.setProperty('SSID', System.getenv("SSID"))
+        localProperties.setProperty('PRE_SHARED_KEY', System.getenv("PRE_SHARED_KEY"))
+    }
+    return localProperties
 }

@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion AndroidSdk.compile
@@ -12,6 +14,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        buildConfigField "String", "SSID", "\"$ssid\""
+        buildConfigField "String", "PRE_SHARED_KEY", "\"$preSharedKey\""
     }
     buildTypes {
         release {
@@ -27,6 +31,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures.viewBinding = true
+    buildFeatures.dataBinding = true
 }
 
 dependencies {
@@ -34,7 +39,14 @@ dependencies {
     implementation Libraries.appCompat
     implementation Libraries.material
     implementation Libraries.ktxCore
+    implementation Libraries.ktxActivity
+    implementation Libraries.ktxFragment
     implementation Libraries.constraintLayout
+    implementation Libraries.lifecycleLivedata
+    implementation Libraries.lifecycleViewmodel
+    implementation Libraries.navigationFragment
+    implementation Libraries.hilt
+    kapt Libraries.hiltCompiler
 }
 
 detekt {
