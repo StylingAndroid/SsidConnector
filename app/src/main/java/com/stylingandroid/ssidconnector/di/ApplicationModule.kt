@@ -27,5 +27,5 @@ object ApplicationModule {
         wifiManager: WifiManager,
         connectivityManager: ConnectivityManager
     ): WifiConnector =
-        WifiConnector.create(wifiManager, connectivityManager)
+        WifiConnector(wifiManager, connectivityManager)
 }

@@ -62,7 +62,8 @@ sealed class WifiConnector constructor(
     abstract suspend fun disconnect()
 
     companion object {
-        fun create(
+
+        operator fun invoke(
             wifiManager: WifiManager,
             connectivityManager: ConnectivityManager
         ): WifiConnector {
