@@ -28,12 +28,12 @@ sealed class WifiConnector constructor(
         ConnectivityManager.NetworkCallback() {
         override fun onAvailable(network: Network) {
             super.onAvailable(network)
-            sendChannel.offer(currentSsid)
+            runCatching { sendChannel.offer(currentSsid) }
         }
 
         override fun onLost(network: Network) {
             super.onLost(network)
-            sendChannel.offer(currentSsid)
+            runCatching { sendChannel.offer(currentSsid) }
         }
     }
 
